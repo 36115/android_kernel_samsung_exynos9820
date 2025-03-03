@@ -20,7 +20,7 @@ jobs:
       contents: write
     strategy:
       matrix:
-        device: [beyond0lte, beyond1lte, beyond2lte, beyondx, d1, d1x, d2s, d2x]
+        device: [d2s]
 
     steps:
       - name: Checkout Tree
