@@ -65,7 +65,7 @@ FUNC_CHECKENV()
 
 export BUILD_CROSS_COMPILE=$(pwd)/toolchain/aarch64-linux-android-4.9/bin/aarch64-linux-androidkernel-
 export CC=$(pwd)/toolchain/clang-r416183b1/bin/clang
-exoprt CLANG_TRIPLE=$(pwd)/toolchain/clang-r416183b1/bin/aarch64-linux-gnu-
+export CLANG_TRIPLE=$(pwd)/toolchain/clang-r416183b1/bin/aarch64-linux-gnu-
 export BUILD_JOB_NUMBER=`grep -c ^processor /proc/cpuinfo`
 RDIR=$(pwd)
 
