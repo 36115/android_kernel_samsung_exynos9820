@@ -41,8 +41,6 @@ while [[ $# -gt 0 ]]; do
 done
 
 export BUILD_CROSS_COMPILE=$(pwd)/toolchain/aarch64-linux-android-4.9/bin/aarch64-linux-androidkernel-
-export CC=$(pwd)/toolchain/clang-r416183b1/bin/clang
-exoprt CLANG_TRIPLE=$(pwd)/toolchain/clang-r416183b1/bin/aarch64-linux-gnu-
 export BUILD_JOB_NUMBER=`grep -c ^processor /proc/cpuinfo`
 RDIR=$(pwd)
 
@@ -250,7 +248,7 @@ FUNC_BUILD_ZIP()
     cd $RDIR/build/out/$MODEL/zip
 
     sed -i "s/ui_print(\" Kernel Version: \");/ui_print(\" Kernel Version: $KERNEL_VERSION\");/" $RDIR/build/out/$MODEL/zip/META-INF/com/google/android/updater-script
-    sed -i "s/ui_print(\" Kernel Device: \");/ui_print(\" Kernel Device: $DEVICE\");/" $RDIR/build/out/$MODEL/zip/META-INF/com/google/android/updater-script
+    sed -i "s/ui_print(\" Kernel Device: \");/ui_print(\" Kernel Device: $DEVICE ($MODEL)\");/" $RDIR/build/out/$MODEL/zip/META-INF/com/google/android/updater-script
 
     version=$(grep -o 'CONFIG_LOCALVERSION="[^"]*"' "$RDIR"/arch/arm64/configs/version.config | cut -d '"' -f 2)
     version=${version:1}
@@ -272,9 +270,7 @@ FUNC_CLEANUP()
 
     rm -rf $RDIR/build/AIK/ramdisk/fstab.exynos*
     rm -rf $RDIR/arch/arm64/configs/version.config
-    rm -rf $RDIR/out
     git reset $RDIR/build/AIK/split_img/boot.img-board
-    git clean -X -df --exclude="!build/export/*"
 }
 
 # MAIN FUNCTION
