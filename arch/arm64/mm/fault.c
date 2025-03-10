@@ -291,7 +291,7 @@ static inline bool is_permission_fault(unsigned int esr, struct pt_regs *regs,
 static void __do_kernel_fault(unsigned long addr, unsigned int esr,
 			      struct pt_regs *regs)
 {
-	const char *msg;
+	const char *msg __maybe_unused;
 	
 	/*
 	 * Are we prepared to handle this kernel fault?
