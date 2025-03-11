@@ -433,7 +433,6 @@ KBUILD_CFLAGS   := -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
                    -Wno-fortify-source \
                    -Wno-sizeof-pointer-div \
                    -Wno-implicit-function-declaration \
-                   -Wno-error=section-mismatch \
 		   -Xassembler -march=armv8-a+lse \
 		   -std=gnu89
 KBUILD_CPPFLAGS := -D__KERNEL__
