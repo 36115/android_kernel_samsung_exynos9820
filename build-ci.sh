@@ -126,6 +126,8 @@ if [[ "$KSU_OPTION" == "y" ]]; then
     echo "-----------------------------------------------"
 
     curl -LOSs "https://raw.githubusercontent.com/oItsMineZKernel/Kernel-Patch/main/SuSFS.patch"
+    curl -LOSs "https://raw.githubusercontent.com/ravindu644/samsung_exynos9820_stock/refs/heads/nethunter/arch/arm64/configs/nethunter.config"
+    mv nethunter.config arch/arm64/configs/
     patch -p1 < SuSFS.patch
 fi
 
@@ -175,7 +177,7 @@ FUNC_BUILD_KERNEL()
 
     make -j$BUILD_JOB_NUMBER ARCH=arm64 \
         CROSS_COMPILE=$BUILD_CROSS_COMPILE O=out \
-        $KERNEL_DEFCONFIG oitsminez.config version.config $KSU_NEXT || abort
+        $KERNEL_DEFCONFIG oitsminez.config version.config nethunter.config $KSU_NEXT || abort
 
 
     echo "-----------------------------------------------"
