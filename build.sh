@@ -275,12 +275,14 @@ detect_env ()
 
         if ! test -f "build/dtconfig/$MODEL.cfg"; then
             quotes "Getting DTB Config for $DEVICE ($MODEL)"
-            curl -LSs "${REPO_URL}toolchains/configs/$MODEL.cfg" -o build/dtconfigs/$MODEL.cfg
+            if [[ "$MODEL" == "d1xks" ]]; then
+                curl -LSs "${REPO_URL}toolchains/configs/d1x.cfg" -o build/dtconfigs/$MODEL.cfg
+            else
+                curl -LSs "${REPO_URL}toolchains/configs/$MODEL.cfg" -o build/dtconfigs/$MODEL.cfg
+            fi
 
             if [[ "$MODEL" == "d2s" ]]; then
                 sed -i "s/d2/$MODEL/g" build/dtconfigs/$MODEL.cfg
-            elif [[ "$MODEL" == "d1xks" ]]; then
-                mv build/dtconfigs/d1x.cfg build/dtconfigs/$MODEL.cfg
             fi
         fi
 
