@@ -419,7 +419,7 @@ kernelsu ()
 
     if ! test -f "arch/arm64/configs/ksu-next.config"; then
         quotes "Getting KernelSU Next Defconfig"
-        curl -LSs "https://raw.githubusercontent.com/oItsMineZKernel/build/refs/heads/exynos9820/configs/ksu-next.config" -o arch/arm64/configs/ksu-next.config
+        curl -LSs "https://raw.githubusercontent.com/oItsMineZKernel/build/refs/heads/exynos9820/configs/ksun.config" -o arch/arm64/configs/ksun.config
         check "KernelSU Next Defconfig"
     fi
 
@@ -618,7 +618,7 @@ rm -rf ./build.log
     fi
 
     if [[ "$KSU" == "y" ]]; then
-        KSU_NEXT=ksu-next.config
+        KSU_NEXT=ksun.config
         kernelsu
     fi
 
