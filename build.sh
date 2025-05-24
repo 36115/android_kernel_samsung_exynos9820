@@ -433,7 +433,7 @@ kernelsu ()
             rm -rf Ke*
         fi
 
-        git submodule add -f -q https://github.com/oItsMineZ/KernelSU-Next > /dev/null && curl -LSs "https://raw.githubusercontent.com/oItsMineZ/KernelSU-Next/susfs-v1.5.7/kernel/setup.sh" | bash -s b63cb82e39578a995c8b1f438c2884e1a9d79f2c
+        git submodule add -f -q https://github.com/oItsMineZ/KernelSU-Next > /dev/null && curl -LSs "https://raw.githubusercontent.com/oItsMineZ/KernelSU-Next/susfs-v1.5.7/kernel/setup.sh" | bash -s v1.0.6-susfs
         separator
         check "KernelSU Next"
 
