@@ -439,7 +439,7 @@ kernelsu ()
             separator
             quotes "Patch Kernel Tree with SuSFS"
             separator
-            curl -LOSs "https://raw.githubusercontent.com/oItsMineZKernel/build/refs/heads/main/SuSFS.patch" && patch -p1 < SuSFS.patch && rm -rf S*
+            curl -LOSs "https://raw.githubusercontent.com/oItsMineZKernel/build/refs/heads/exynos9820/SuSFS.patch" && patch -p1 < SuSFS.patch && rm -rf S*
             separator
             check "SuSFS"
         fi
@@ -464,7 +464,7 @@ kernel ()
         noquotes "KernelSU Next with SuSFS: Include (Using $KSU_NEXT)"
     fi
 
-    sed -i "s/CONFIG_LOCALVERSION=\"\"/CONFIG_LOCALVERSION=\"-oItsMineZKernel-$KERNEL_VERSION-$DEVICE-$MODEL-$KERNELCLANG\"/" arch/arm64/configs/$KERNEL_DEFCONFIG
+    sed -i "s/CONFIG_LOCALVERSION=\"\"/CONFIG_LOCALVERSION=\"-oItsMineZKernel-$KERNEL_VERSION-$DEVICE-$MODEL\"/" arch/arm64/configs/$KERNEL_DEFCONFIG
     sed -i "s/CONFIG_LOCALVERSION_AUTO=y/CONFIG_LOCALVERSION_AUTO=n/" arch/arm64/configs/$KERNEL_DEFCONFIG
 
     DEFCONFIG="$KERNEL_DEFCONFIG oitsminez.config $KSU_NEXT"
@@ -586,7 +586,7 @@ build_zip ()
     sed -i "s/ui_print(\" Kernel Toolchain: \");/ui_print(\" Kernel Toolchain: $CLANG_INFO\");/" build/out/$MODEL/zip/META-INF/com/google/android/updater-script
 
     if [[ "$LOCAL" == "y" ]] || [[ "$RELEASE" == "y" ]]; then
-        sed -i "s/CONFIG_LOCALVERSION=\"-oItsMineZKernel-$KERNEL_VERSION-"$DEVICE"-$MODEL-$KERNELCLANG\"/CONFIG_LOCALVERSION=\"-oItsMineZKernel-$KERNEL_VERSION-"$DATE"-"$DEVICE"-$MODEL-$KERNELCLANG\"/" arch/arm64/configs/$KERNEL_DEFCONFIG
+        sed -i "s/CONFIG_LOCALVERSION=\"-oItsMineZKernel-$KERNEL_VERSION-"$DEVICE"-$MODEL\"/CONFIG_LOCALVERSION=\"-oItsMineZKernel-$KERNEL_VERSION-"$DATE"-"$DEVICE"-$MODEL-$KERNELCLANG\"/" arch/arm64/configs/$KERNEL_DEFCONFIG
         NAME=$(grep -o 'CONFIG_LOCALVERSION="[^"]*"' arch/arm64/configs/$KERNEL_DEFCONFIG | cut -d '"' -f 2)
         NAME=${NAME:1}.zip
         pushd build/out/$MODEL/zip > /dev/null
